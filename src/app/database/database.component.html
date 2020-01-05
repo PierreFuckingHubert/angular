@@ -1,0 +1,69 @@
+
+<div>
+<p>Ajouter table : </p>
+<input type="text" (keyup)="onKey($event)"/>
+<button (click)="createTable()"> + </button>
+
+<p>Liste tables : </p>
+<select (change)="onChange($event)">
+  <option *ngFor="let database of databases" [value]="database">
+      {{database}}
+  </option>
+</select>
+<button (click)="deleteTable()"> delete </button>
+</div>
+
+<p>Add Releases on table :</p>
+
+genre
+<select (change)="genre($event)">
+  <option value="aucun">Auncun</option>
+  <option>Funk</option>
+  <option>Hip+Hop</option>
+  <option>Pop</option>
+  <option>Rock</option>
+  <option>Reggae</option>
+  <option>Electronic</option>
+  <option>Jazz</option>
+</select>
+
+
+style
+<select (change)="style($event)">
+  <option value="aucun">Auncun</option>
+  <option>House</option>
+  <option>Swing</option>
+</select>
+
+pays
+<select (change)="country($event)">
+  <option value="aucun">Auncun</option>
+  <option>US</option>
+  <option>UK</option>
+</select>
+
+
+<button (click)="searchOnDiscogs()">Rechercher</button>
+<button (click)="addToBdd()">Enregistrer</button>
+<button (click)="saveRaters()">Enregistrer Raters</button>
+
+
+{{releasesNumber}}
+
+
+<p>Liste Categories : </p>
+<select (change)="onChangeCategory($event)">
+  <option *ngFor="let category of categories" [value]="category">
+      {{category}}
+  </option>
+</select>
+
+<input type="text" (keyup)="newCategory($event)" placeholder="add new category"/>
+
+<input type="text" (keyup)="onKeyRecord($event)" placeholder="record url"/>
+<button (click)="addRecord()"> add record </button>
+<button (click)="searchOnEbay()"> Search On Ebay </button>
+
+
+
+
