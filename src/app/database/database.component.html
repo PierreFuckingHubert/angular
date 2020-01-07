@@ -33,6 +33,12 @@ style
   <option value="aucun">Auncun</option>
   <option>House</option>
   <option>Swing</option>
+  <option>Ragga</option>
+  <option>RnB%2FSwing</option>
+  <option>Dub</option>
+  <option>Highlife</option>
+  <option>Soca</option>
+  <option>Jungle</option>
 </select>
 
 pays
@@ -40,12 +46,19 @@ pays
   <option value="aucun">Auncun</option>
   <option>US</option>
   <option>UK</option>
+  <option>Canada</option>
+  <option>Ghana</option>
+  <option>France</option>
+  <option>Nigeria</option>
+  <option>Guatemala</option>
+  <option>Australia</option>
+  <option>Trinidad+%26+Tobago</option>
 </select>
 
 
 <button (click)="searchOnDiscogs()">Rechercher</button>
 <button (click)="addToBdd()">Enregistrer</button>
-<button (click)="saveRaters()">Enregistrer Raters</button>
+<button (click)="addRatedReleasesToBdd()">Enregistrer disques bien notés</button>
 
 
 {{releasesNumber}}

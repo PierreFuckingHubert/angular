@@ -44,8 +44,12 @@ export class AppelService {
 
   addReleasesToBdd(request): Observable<any>{
     console.log("addReleasesToBdd : ", request);
-
     return this.httpClient.post('//localhost:9090/addReleasesToBdd',request, {responseType:'text'});
+  }
+
+  addRatedReleasesToBdd(request): Observable<any>{
+    console.log("addRatedReleasesToBdd : ", request);
+    return this.httpClient.post('//localhost:9090/addRatedReleasesToBdd',request, {responseType:'text'});
   }
 
 }

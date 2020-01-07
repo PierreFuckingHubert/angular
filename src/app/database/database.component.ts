@@ -57,20 +57,22 @@ export class DatabaseComponent implements OnInit {
 
   searchOnDiscogs(){
     this.request = "https://api.discogs.com/database/search?&type=release&format=Vinyl&token=vQxxFzrnTDhksNimCTcZGftwHqejMcrUungWtECD&per_page=1000"+this.selectedStyle+this.selectedCountry+this.selectedGenre;
+    console.log("this.request : ", this.request);
     this.appelService.getNumberOfReleases(this.request).subscribe(data => {
       this.releasesNumber = data.pagination.items;
     });
   }
 
   addToBdd(){
+    console.log("this.request : ", this.request);
     this.appelService.addReleasesToBdd(this.request).subscribe(data => {
       console.log("addToBdd : ", data);
     });
   }
 
-  saveRaters(){
-    this.appelService.saveRaters(this.request).subscribe(data => {
-      console.log("saveRaters : ", data);
+  addRatedReleasesToBdd(){
+    this.appelService.addRatedReleasesToBdd(this.request).subscribe(data => {
+      console.log("addRatedReleasesToBdd : ", data);
     });
   }
 
