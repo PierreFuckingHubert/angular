@@ -19,23 +19,36 @@ export class DatabaseComponent implements OnInit {
   categories: any;
   request: any;
   selectedStyle: string = "";
+  selectedStyle2: string = "";
   selectedGenre: string = "";
+  selectedGenre2: string = "";
   selectedCountry: string = "";
   selectedYear: any;
   releasesNumber: any;
+  tableName: string;
 
   constructor(private appelService: AppelService) { }
 
   ngOnInit() {
     this.getCategories();
     this.getDatabases();
+    this.getRecordsFromBdd();
   }
+
 
   genre(event) {
     if(event.target.value != "aucun"){
       this.selectedGenre = "&genre="+event.target.value;
     }else{
       this.selectedGenre = "";
+    }
+  }
+
+  genre2(event) {
+    if(event.target.value != "aucun"){
+      this.selectedGenre2 = "+"+event.target.value;
+    }else{
+      this.selectedGenre2 = "";
     }
   }
 
@@ -47,6 +60,14 @@ export class DatabaseComponent implements OnInit {
     }
   }
 
+  style2(event) {
+    if(event.target.value != "aucun"){
+      this.selectedStyle2 = "+"+event.target.value;
+    }else{
+      this.selectedStyle2 = "";
+    }
+  }
+
   country(event) {
     if(event.target.value != "aucun"){
       this.selectedCountry = "&country="+event.target.value;
@@ -55,8 +76,15 @@ export class DatabaseComponent implements OnInit {
     }
   }
 
+  getRecordsFromBdd(){
+    this.tableName = "raterecords3";
+    this.appelService.getRecordsFromBdd(this.tableName).subscribe(data => {
+      console.log(data);
+    });
+  }
+
   searchOnDiscogs(){
-    this.request = "https://api.discogs.com/database/search?&type=release&format=Vinyl&token=vQxxFzrnTDhksNimCTcZGftwHqejMcrUungWtECD&per_page=1000"+this.selectedStyle+this.selectedCountry+this.selectedGenre;
+    this.request = "https://api.discogs.com/database/search?&type=release&format=Vinyl&token=vQxxFzrnTDhksNimCTcZGftwHqejMcrUungWtECD&per_page=1000"+this.selectedStyle+this.selectedStyle2+this.selectedCountry+this.selectedGenre+this.selectedGenre2;
     console.log("this.request : ", this.request);
     this.appelService.getNumberOfReleases(this.request).subscribe(data => {
       this.releasesNumber = data.pagination.items;
@@ -71,7 +99,7 @@ export class DatabaseComponent implements OnInit {
   }
 
   addRatedReleasesToBdd(){
-    this.appelService.addRatedReleasesToBdd(this.request).subscribe(data => {
+    this.appelService.addRatedReleasesToBdd({"date":true,"request":this.request}).subscribe(data => {
       console.log("addRatedReleasesToBdd : ", data);
     });
   }
